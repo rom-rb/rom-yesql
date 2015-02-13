@@ -37,7 +37,7 @@ Or install it yourself as:
 ``` ruby
 # given sql/users.sql includes "SELECT * FROM users"
 
-ROM.setup(:yesql, ['sqlite://path/to/your/db'])
+ROM.setup(:yesql, ['sqlite://path/to/your/db', path: './sql'])
 
 class MyQueries < ROM::Relation[:yesql]
 end
