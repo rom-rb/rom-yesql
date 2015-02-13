@@ -8,6 +8,7 @@ group :test do
   gem 'rspec', '~> 3.1'
   gem 'codeclimate-test-reporter', require: false
   gem 'sqlite3', platforms: [:mri, :rbx]
+  gem 'jdbc-sqlite3', platforms: :jruby
 end
 
 group :tools do
