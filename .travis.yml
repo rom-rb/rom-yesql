@@ -3,9 +3,7 @@ sudo: false
 cache: bundler
 bundler_args: --without yard guard benchmarks tools
 env:
-  - CODECLIMATE_REPO_TOKEN=03d7f66589572702b12426d2bc71c4de6281a96139e33b335b894264b1f8f0b0
-before_script:
-  - psql -c 'create database rom;' -U postgres
+  - CODECLIMATE_REPO_TOKEN=TODO
 script: "bundle exec rake ci"
 rvm:
   - 2.0
