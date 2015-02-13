@@ -10,7 +10,6 @@ end
 
 require 'rom-yesql'
 require 'logger'
-require 'byebug'
 
 LOGGER = Logger.new(File.open('./log/test.log', 'a'))
 
