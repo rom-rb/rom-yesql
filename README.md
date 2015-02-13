@@ -14,7 +14,7 @@
 [![Inline docs](http://inch-ci.org/github/rom-rb/rom-yesql.svg?branch=master)][inchpages]
 
 
-Yesql-like adapter for [Ruby Object Mapper](https://github.com/rom-rb/rom).
+[Yesql](https://github.com/krisajenkins/yesql)-like adapter for [Ruby Object Mapper](https://github.com/rom-rb/rom).
 
 ## Installation
 
