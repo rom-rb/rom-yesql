@@ -28,10 +28,6 @@ module ROM
         ! @dataset.nil?
       end
 
-      def schema
-        []
-      end
-
       private
 
       def initialize_queries
