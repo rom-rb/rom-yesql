@@ -12,7 +12,11 @@ describe 'ROM / Yesql' do
     setup.relation(:users, adapter: :yesql)
   end
 
-  it 'works yay!' do
-    expect(users.by_name(name: 'Jane')).to match_array([{ id: 1, name: 'Jane' }])
+  describe 'query method' do
+    it 'uses hash-based interpolation by default' do
+      expect(users.by_name(name: 'Jane')).to match_array([
+        { id: 1, name: 'Jane' }
+      ])
+    end
   end
 end
