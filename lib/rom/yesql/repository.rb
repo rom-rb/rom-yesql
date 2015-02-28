@@ -6,28 +6,18 @@ require 'rom/yesql/relation'
 module ROM
   module Yesql
     class Repository < ROM::Repository
+      include Options
+
+      option :path, reader: true
+
       attr_reader :connection
+      attr_reader :queries
 
       def initialize(uri, options = {})
+        super
         @connection = Sequel.connect(uri, options)
-
-        path = options.fetch(:path)
-        mod = Module.new
-
-        queries = Dir["#{path}/**/*.sql"].map do |file|
-          name = File.basename(file, '.*')
-          sql = File.read(file)
-          [name, sql.strip]
-        end
-
-        queries.each do |name, query|
-          mod.module_exec do
-            define_method(name) { |opts| dataset.read(query, opts) }
-          end
-        end
-
-        Relation.send(:include, mod)
-        Relation.query_names(queries.map(&:first).map(&:to_sym))
+        initialize_queries
+        Relation.load_queries(queries)
       end
 
       def dataset(_name)
@@ -40,6 +30,16 @@ module ROM
 
       def schema
         []
+      end
+
+      private
+
+      def initialize_queries
+        @queries = Dir["#{path}/**/*.sql"].each_with_object({}) do |file, h|
+          name = File.basename(file, '.*').to_sym
+          sql = File.read(file)
+          h[name] = sql.strip
+        end
       end
     end
   end
