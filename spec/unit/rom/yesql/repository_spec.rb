@@ -25,5 +25,4 @@ describe ROM::Yesql::Repository do
     repository = ROM::Yesql::Repository.new(uri)
     expect(repository.queries).to eql({})
   end
-
 end

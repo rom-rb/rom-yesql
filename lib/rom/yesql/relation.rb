@@ -5,8 +5,6 @@ module ROM
     class Relation < ROM::Relation
       defines :query_proc
 
-      option :query_proc, reader: true, default: proc { |r| r.class.query_proc }
-
       def self.queries
         @queries || {}
       end
@@ -32,6 +30,10 @@ module ROM
           end
         end
         @queries
+      end
+
+      def query_proc
+        self.class.query_proc
       end
     end
   end
