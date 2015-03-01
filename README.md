@@ -42,7 +42,7 @@ ROM.setup(:yesql, ['sqlite://path/to/your/db', path: './sql'])
 class MyQueries < ROM::Relation[:yesql]
 end
 
-rom = ROM.finalize
+rom = ROM.finalize.env
 
 my_queries = rom.relations[:my_queries]
 my_queries.users(name: 'Jane').to_a # => gets the users
