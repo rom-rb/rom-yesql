@@ -28,4 +28,11 @@ describe ROM::Yesql::Repository do
 
     expect(repository.queries).to eql({})
   end
+
+  it 'freezes queries' do
+    queries = { reports: { true: 'SELECT 1' } }
+    repository = ROM::Yesql::Repository.new(uri, queries: queries)
+
+    expect(repository.queries).to be_frozen
+  end
 end

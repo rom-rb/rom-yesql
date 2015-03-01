@@ -54,6 +54,7 @@ module ROM
         super
         @connection = Sequel.connect(uri, options)
         initialize_queries
+        queries.freeze
         Relation.query_proc(query_proc)
         Relation.load_queries(queries)
       end
