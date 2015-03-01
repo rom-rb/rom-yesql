@@ -28,15 +28,43 @@ module ROM
 
       # Extends a relation with query methods
       #
+      # This will only kick in if the derived dataset name matches the key under
+      # which relation queries were registered. If not it is expected that the
+      # dataset will be set manually
+      #
       # @api private
       def self.inherited(klass)
         super
-        queries[klass.dataset].each do |name, query|
+        define_query_methods(klass, queries[klass.dataset] || {})
+      end
+
+      # Set dataset name for the relation class
+      #
+      # The class will be extended with queries registered under that name.
+      # By default dataset name is derived from the class name, which doesn't
+      # have to match they key under which its queries were registered
+      #
+      # @return [Symbol]
+      #
+      # @api public
+      def self.dataset(name = Undefined)
+        return @dataset if name == Undefined
+        @dataset = name
+        define_query_methods(self, Relation.queries[name] || {})
+        @dataset
+      end
+
+      # Extend provided klass with query methods
+      #
+      # @param [Class] klass A relation class
+      # @param [Hash] queries A hash with name, query pairs for the relation
+      #
+      # @api private
+      def self.define_query_methods(klass, queries)
+        queries.each do |name, query|
           klass.class_eval do
             define_method(name) do |*args|
-              ROM::Relation.new(
-                dataset.read(query_proc.call(name, query, *args))
-              )
+              ROM::Relation.new(dataset.read(query_proc.call(name, query, *args)))
             end
           end
         end

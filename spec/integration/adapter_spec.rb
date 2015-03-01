@@ -23,7 +23,10 @@ describe 'ROM / Yesql' do
       query_proc(proc { |_name, query, opts| query.gsub(':id:', opts[:id].to_s) })
     end
 
-    class Reports < ROM::Relation[:yesql]
+    module Test
+      class Reports < ROM::Relation[:yesql]
+        dataset :reports
+      end
     end
   end
 
