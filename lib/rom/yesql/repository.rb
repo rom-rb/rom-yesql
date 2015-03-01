@@ -28,7 +28,7 @@ module ROM
       include Options
 
       option :path, reader: true
-      option :queries, type: Hash, default: {}
+      option :queries, type: Hash, default: EMPTY_HASH
       option :query_proc, reader: true, default: proc { |repository|
         proc do |_name, query, opts|
           query % opts
