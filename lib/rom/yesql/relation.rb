@@ -26,21 +26,12 @@ module ROM
     class Relation < ROM::Relation
       defines :query_proc
 
-      # All loaded queries provided by repository
-      #
-      # @return [Hash]
-      #
-      # @api privatek
-      def self.queries
-        @queries || {}
-      end
-
       # Extends a relation with query methods
       #
       # @api private
       def self.inherited(klass)
         super
-        Relation.queries[klass.dataset].each do |name, query|
+        queries[klass.dataset].each do |name, query|
           klass.class_eval do
             define_method(name) do |*args|
               ROM::Relation.new(
@@ -49,6 +40,15 @@ module ROM
             end
           end
         end
+      end
+
+      # All loaded queries provided by repository
+      #
+      # @return [Hash]
+      #
+      # @api privatek
+      def self.queries
+        @queries || {}
       end
 
       # Hook called by a repository to load all configured queries

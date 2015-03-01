@@ -78,7 +78,7 @@ module ROM
       #
       # @api private
       def initialize_queries
-        @queries = options[:queries]
+        @queries = options[:queries].dup
 
         return unless path
 

@@ -34,8 +34,4 @@ RSpec.configure do |config|
     added_constants = Object.constants - @constants
     added_constants.each { |name| Object.send(:remove_const, name) }
   end
-
-  config.after(:all) do
-    ROM::Yesql::Relation.instance_variable_set('@queries', {})
-  end
 end
