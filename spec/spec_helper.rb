@@ -10,8 +10,12 @@ end
 
 require 'rom-yesql'
 require 'inflecto'
-require 'byebug'
 require 'logger'
+
+begin
+  require 'byebug'
+rescue LoadError
+end
 
 LOGGER = Logger.new(File.open('./log/test.log', 'a'))
 
