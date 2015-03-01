@@ -11,7 +11,7 @@ module ROM
       option :path, reader: true
       option :queries, type: Hash, default: {}
       option :query_proc, reader: true, default: proc { |repository|
-        proc do |query, opts|
+        proc do |_name, query, opts|
           query % opts
         end
       }

@@ -20,7 +20,7 @@ describe 'ROM / Yesql' do
     end
 
     class Tasks < ROM::Relation[:yesql]
-      query_proc(proc { |query, opts| query.gsub(':id:', opts[:id].to_s) })
+      query_proc(proc { |_name, query, opts| query.gsub(':id:', opts[:id].to_s) })
     end
 
     class Reports < ROM::Relation[:yesql]
