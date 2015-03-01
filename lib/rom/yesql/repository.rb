@@ -24,7 +24,6 @@ module ROM
         super
         @connection = Sequel.connect(uri, options)
         initialize_queries
-        queries.update(options[:queries])
         Relation.query_proc(query_proc)
         Relation.load_queries(queries)
       end
@@ -40,13 +39,17 @@ module ROM
       private
 
       def initialize_queries
-        @queries = Dir["#{path}/*"].each_with_object({}) do |dir, h|
+        @queries = options[:queries]
+
+        return unless path
+
+        Dir["#{path}/*"].each do |dir|
           dataset = File.basename(dir).to_sym
-          h[dataset] = {}
+          @queries[dataset] = {}
           Dir["#{dir}/**/*.sql"].each do |file|
             name = File.basename(file, '.*').to_sym
             sql = File.read(file)
-            h[dataset][name] = sql.strip
+            @queries[dataset][name] = sql.strip
           end
         end
       end
