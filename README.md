@@ -35,7 +35,7 @@ Or install it yourself as:
 ## Synopsis
 
 ``` ruby
-# given sql/users.sql includes "SELECT * FROM users WHERE name = '%{name}'"
+# given sql/my_queries/users.sql includes "SELECT * FROM users WHERE name = '%{name}'"
 
 ROM.setup(:yesql, ['sqlite://path/to/your/db', path: './sql'])
 
