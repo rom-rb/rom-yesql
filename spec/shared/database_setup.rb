@@ -1,6 +1,6 @@
 shared_context 'database setup' do
   let(:root) { Pathname(__FILE__).dirname.join('../..') }
-  let(:path) { "#{root}/spec/fixtures" }
+  let(:path) { root.join('spec/fixtures') }
 
   if RUBY_ENGINE == 'jruby'
     let(:uri) { "jdbc:sqlite://#{root.join('db/test.sqlite')}" }
@@ -8,10 +8,10 @@ shared_context 'database setup' do
     let(:uri) { "sqlite://#{root.join('db/test.sqlite')}" }
   end
 
-  let(:conn) { Sequel.connect(uri) }
+  let!(:conn) { Sequel.connect(uri) }
 
   def drop_tables
-    [:users].each { |name| conn.drop_table?(name) }
+    [:users, :tasks].each { |name| conn.drop_table?(name) }
   end
 
   before do
@@ -23,6 +23,12 @@ shared_context 'database setup' do
       primary_key :id
       String :name, null: false
       index :name, unique: true
+    end
+
+    conn.create_table :tasks do
+      primary_key :id
+      String :title, null: false
+      index :title, unique: true
     end
   end
 end

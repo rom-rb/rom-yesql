@@ -10,13 +10,21 @@ module ROM
 
       option :path, reader: true
 
+      option :query_proc, reader: true, default: proc { |repository|
+        proc do |query, opts|
+          query % opts
+        end
+      }
+
       attr_reader :connection
+
       attr_reader :queries
 
       def initialize(uri, options = {})
         super
         @connection = Sequel.connect(uri, options)
         initialize_queries
+        Relation.query_proc(query_proc)
         Relation.load_queries(queries)
       end
 
@@ -31,10 +39,14 @@ module ROM
       private
 
       def initialize_queries
-        @queries = Dir["#{path}/**/*.sql"].each_with_object({}) do |file, h|
-          name = File.basename(file, '.*').to_sym
-          sql = File.read(file)
-          h[name] = sql.strip
+        @queries = Dir["#{path}/*"].each_with_object({}) do |dir, h|
+          dataset = File.basename(dir).to_sym
+          h[dataset] = {}
+          Dir["#{dir}/**/*.sql"].each do |file|
+            name = File.basename(file, '.*').to_sym
+            sql = File.read(file)
+            h[dataset][name] = sql.strip
+          end
         end
       end
     end

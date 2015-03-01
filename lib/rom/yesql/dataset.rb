@@ -7,12 +7,8 @@ module ROM
         @connection = connection
       end
 
-      def read(query, opts = {})
-        connection.fetch(query % opts)
-      end
-
-      def to_a
-        read.to_a
+      def read(query)
+        connection.fetch(query)
       end
     end
   end

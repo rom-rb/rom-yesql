@@ -9,6 +9,8 @@ if RUBY_ENGINE == 'rbx'
 end
 
 require 'rom-yesql'
+# FIXME: why do we need to require it manually??
+require 'sequel/adapters/sqlite'
 require 'inflecto'
 require 'logger'
 
