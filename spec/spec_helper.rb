@@ -10,7 +10,7 @@ end
 
 require 'rom-yesql'
 # FIXME: why do we need to require it manually??
-require 'sequel/adapters/sqlite'
+require 'sequel/adapters/sqlite' unless RUBY_ENGINE == 'jruby'
 require 'inflecto'
 require 'logger'
 
@@ -31,8 +31,11 @@ RSpec.configure do |config|
   end
 
   config.after do
-    ROM::Yesql::Relation.instance_variable_set('@queries', {})
     added_constants = Object.constants - @constants
     added_constants.each { |name| Object.send(:remove_const, name) }
+  end
+
+  config.after(:all) do
+    ROM::Yesql::Relation.instance_variable_set('@queries', {})
   end
 end

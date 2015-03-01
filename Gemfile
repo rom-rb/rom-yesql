@@ -13,7 +13,7 @@ end
 
 group :tools do
   gem 'guard'
-  gem 'byebug'
+  gem 'byebug', platforms: [:mri]
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'rubocop', '~> 0.28'
