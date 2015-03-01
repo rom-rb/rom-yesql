@@ -9,7 +9,7 @@ module ROM
       include Options
 
       option :path, reader: true
-
+      option :queries, type: Hash, default: {}
       option :query_proc, reader: true, default: proc { |repository|
         proc do |query, opts|
           query % opts
@@ -24,6 +24,7 @@ module ROM
         super
         @connection = Sequel.connect(uri, options)
         initialize_queries
+        queries.update(options[:queries])
         Relation.query_proc(query_proc)
         Relation.load_queries(queries)
       end
