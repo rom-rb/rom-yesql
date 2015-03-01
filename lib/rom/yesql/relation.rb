@@ -16,7 +16,9 @@ module ROM
         Relation.queries[klass.dataset].each do |name, query|
           klass.class_eval do
             define_method(name) do |*args|
-              dataset.read(query_proc.call(query, *args))
+              ROM::Relation.new(
+                dataset.read(query_proc.call(query, *args))
+              )
             end
           end
         end

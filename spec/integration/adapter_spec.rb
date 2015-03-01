@@ -47,5 +47,10 @@ describe 'ROM / Yesql' do
         { id: 2, name: 'Joe' }
       ])
     end
+
+    it 'returns rom relation' do
+      relation = users.by_name(name: 'Jane') >> proc { |r| r.map { |t| t[:name] } }
+      expect(relation).to match_array(['Jane'])
+    end
   end
 end
