@@ -1,4 +1,5 @@
 require 'rom/relation'
+require 'rom/yesql/relation/class_interface'
 
 module ROM
   module Yesql
@@ -24,7 +25,11 @@ module ROM
     #
     # @api public
     class Relation < ROM::Relation
+      extend ClassMacros
+
       defines :query_proc
+
+      Materialized = Class.new(Relation)
 
       # Extends a relation with query methods
       #
@@ -35,23 +40,8 @@ module ROM
       # @api private
       def self.inherited(klass)
         super
+        klass.extend(ClassInterface)
         define_query_methods(klass, queries[klass.dataset] || {})
-      end
-
-      # Set dataset name for the relation class
-      #
-      # The class will be extended with queries registered under that name.
-      # By default dataset name is derived from the class name, which doesn't
-      # have to match they key under which its queries were registered
-      #
-      # @return [Symbol]
-      #
-      # @api public
-      def self.dataset(name = Undefined)
-        return @dataset if name == Undefined
-        @dataset = name
-        define_query_methods(self, Relation.queries[name] || {})
-        @dataset
       end
 
       # Extend provided klass with query methods
@@ -64,7 +54,7 @@ module ROM
         queries.each do |name, query|
           klass.class_eval do
             define_method(name) do |*args|
-              ROM::Relation.new(dataset.read(query_proc.call(name, query, *args)))
+              Materialized.new(dataset.read(query_proc.call(name, query, *args)))
             end
           end
         end
