@@ -1,4 +1,4 @@
 require 'rom/yesql/version'
-require 'rom/yesql/repository'
+require 'rom/yesql/gateway'
 
 ROM.register_adapter(:yesql, ROM::Yesql)

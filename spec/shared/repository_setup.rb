@@ -1,4 +1,4 @@
-shared_context 'repository setup' do
+shared_context 'gateway setup' do
   let(:root) { Pathname(__FILE__).dirname.join('../..') }
   let(:path) { root.join('spec/fixtures') }
 

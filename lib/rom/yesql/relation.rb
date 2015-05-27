@@ -6,7 +6,7 @@ module ROM
     # Yesql relation subclass
     #
     # Class that inherits from this relation will be extended with methods
-    # based on its repository queries hash
+    # based on its gateway queries hash
     #
     # It also supports overriding query_proc
     #
@@ -60,7 +60,7 @@ module ROM
         end
       end
 
-      # All loaded queries provided by repository
+      # All loaded queries provided by gateway
       #
       # @return [Hash]
       #
@@ -69,7 +69,7 @@ module ROM
         @queries || {}
       end
 
-      # Hook called by a repository to load all configured queries
+      # Hook called by a gateway to load all configured queries
       #
       # @param [Hash] queries A hash with queries
       #
@@ -86,7 +86,7 @@ module ROM
 
       # Return query proc set on a relation class
       #
-      # By default this returns whatever was set in the repository or the default
+      # By default this returns whatever was set in the gateway or the default
       # one which simply uses hash % query to evaluate a query string
       #
       # @return [Proc]

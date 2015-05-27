@@ -5,31 +5,31 @@ require 'rom/yesql/relation'
 
 module ROM
   module Yesql
-    # Yesql repository exposes access to configured SQL queries
+    # Yesql gateway exposes access to configured SQL queries
     #
     # @example
     #   # Load all queries from a specific path
-    #   ROM::Yesql::Repository.new(uri, path: '/path/to/my_queries')
+    #   ROM::Yesql::Gateway.new(uri, path: '/path/to/my_queries')
     #
     #   # Provide queries explicitly using a hash
-    #   ROM::Yesql::Repository.new(uri, queries: {
+    #   ROM::Yesql::Gateway.new(uri, queries: {
     #     reports: {
     #       all_users: 'SELECT * FROM users'
     #     }
     #   })
     #
     #   # Override default query proc handler
-    #   ROM::Yesql::Repository.new(uri, query_proc: proc { |name, query, *args|
+    #   ROM::Yesql::Gateway.new(uri, query_proc: proc { |name, query, *args|
     #     # do something to return an sql string
     #   })
     #
     # @api public
-    class Repository < ROM::Repository
+    class Gateway < ROM::Gateway
       include Options
 
       option :path, reader: true
       option :queries, type: Hash, default: EMPTY_HASH
-      option :query_proc, reader: true, default: proc { |repository|
+      option :query_proc, reader: true, default: proc { |gateway|
         proc do |_name, query, opts|
           query % opts
         end
