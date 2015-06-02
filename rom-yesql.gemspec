@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = ROM::Yesql::VERSION.dup
   spec.authors       = ["Piotr Solnica"]
   spec.email         = ["piotr.solnica@gmail.com"]
-  spec.summary       = 'Yesql databases support for ROM'
+  spec.summary       = 'Yesql adapter for ROM'
   spec.description   = spec.summary
   spec.homepage      = "http://rom-rb.org"
   spec.license       = "MIT"
