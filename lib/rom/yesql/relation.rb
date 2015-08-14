@@ -25,11 +25,13 @@ module ROM
     #
     # @api public
     class Relation < ROM::Relation
+      adapter :yesql
+
       extend ClassMacros
 
       defines :query_proc
 
-      Materialized = Class.new(Relation)
+      Materialized = Class.new(ROM::Relation)
 
       # Extends a relation with query methods
       #

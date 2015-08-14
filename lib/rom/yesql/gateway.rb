@@ -95,4 +95,6 @@ module ROM
       end
     end
   end
+
+  register_adapter(:yesql, ROM::Yesql)
 end
