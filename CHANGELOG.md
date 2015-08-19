@@ -1,3 +1,9 @@
+## v0.2.0 2015-08-19
+
+Updated to work with ROM 0.9.0
+
+[Compare v0.1.1...v0.2.0](https://github.com/rom-rb/rom-yaml/compare/v0.1.0...v0.2.0)
+
 ## v0.1.1 2015-07-27
 
 ### Changed
