@@ -66,7 +66,7 @@ module ROM
       #
       # @return [Hash]
       #
-      # @api privatek
+      # @api private
       def self.queries
         @queries || {}
       end
