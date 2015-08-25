@@ -37,6 +37,7 @@ Or install it yourself as:
 ``` ruby
 # given sql/my_queries/users.sql includes "SELECT * FROM users WHERE name = '%{name}'"
 
+ROM.use :auto_registration
 ROM.setup(:yesql, ['sqlite://path/to/your/db', path: './sql'])
 
 class MyQueries < ROM::Relation[:yesql]
