@@ -29,7 +29,7 @@ module ROM
 
       option :path, reader: true
       option :queries, type: Hash, default: EMPTY_HASH
-      option :query_proc, reader: true, default: proc { |gateway|
+      option :query_proc, reader: true, default: proc { |_gateway|
         proc do |_name, query, opts|
           query % opts
         end
