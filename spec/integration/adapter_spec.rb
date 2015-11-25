@@ -3,23 +3,21 @@ require 'spec_helper'
 describe 'ROM / Yesql' do
   include_context 'users and tasks'
 
-  let(:rom) { setup.finalize }
+  let(:container) { ROM.container(configuration) }
 
-  let!(:setup) do
-    ROM.setup(:yesql, [uri, path: path, queries: { reports: report_queries }])
+  let!(:configuration) do
+    ROM::Configuration.new(:yesql, [uri, path: path, queries: { reports: report_queries }]).use(:macros)
   end
 
   let(:report_queries) { { all_users: 'SELECT * FROM users ORDER BY %{order}' } }
 
-  let(:users) { rom.relation(:users) }
-  let(:tasks) { rom.relation(:tasks) }
-  let(:reports) { rom.relation(:reports) }
+  let(:users) { container.relation(:users) }
+  let(:tasks) { container.relation(:tasks) }
+  let(:reports) { container.relation(:reports) }
 
   before do
-    class Users < ROM::Relation[:yesql]
-    end
-
-    class Tasks < ROM::Relation[:yesql]
+    configuration.relation(:users)
+    configuration.relation(:tasks) do
       query_proc(proc { |_name, query, opts| query.gsub(':id:', opts[:id].to_s) })
     end
 
@@ -28,6 +26,8 @@ describe 'ROM / Yesql' do
         dataset :reports
       end
     end
+
+    configuration.register_relation(Test::Reports)
   end
 
   describe 'query method' do
