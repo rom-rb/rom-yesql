@@ -1,5 +1,7 @@
 require 'sequel'
 
+require 'rom/support/options'
+
 require 'rom/yesql/dataset'
 require 'rom/yesql/relation'
 
