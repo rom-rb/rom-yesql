@@ -4,7 +4,7 @@
 [codeclimate]: https://codeclimate.com/github/rom-rb/rom-yesql
 [inchpages]: http://inch-ci.org/github/rom-rb/rom-yesql
 
-# ROM::Yesql
+# rom-yesql
 
 [![Gem Version](https://badge.fury.io/rb/rom-yesql.svg)][gem]
 [![Build Status](https://travis-ci.org/rom-rb/rom-yesql.svg?branch=master)][travis]
