@@ -8,7 +8,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/rom-yesql.svg)][gem]
 [![Build Status](https://travis-ci.org/rom-rb/rom-yesql.svg?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/rom-rb/rom-yesql.png)][gemnasium]
+[![Dependency Status](https://gemnasium.com/rom-rb/rom-yesql.svg)][gemnasium]
 [![Code Climate](https://codeclimate.com/github/rom-rb/rom-yesql/badges/gpa.svg)][codeclimate]
 [![Test Coverage](https://codeclimate.com/github/rom-rb/rom-yesql/badges/coverage.svg)][codeclimate]
 [![Inline docs](http://inch-ci.org/github/rom-rb/rom-yesql.svg?branch=master)][inchpages]
