@@ -11,7 +11,9 @@ module ROM
     # It also supports overriding query_proc
     #
     # @example
-    #   ROM.setup(:yesql, [uri, path: '/my/sql/queries/are/here'])
+    #   conf = ROM::Configuration.new(
+    #     :yesql, ['sqlite::memory', path: '/my/sql/queries/are/here']
+    #   )
     #
     #   class Reports < ROM::Relation[:yesql]
     #     query_proc(proc { |name, query, *args|
@@ -19,9 +21,11 @@ module ROM
     #     })
     #   end
     #
-    #   rom = ROM.finalize.env
+    #   conf.register_relation(Reports)
     #
-    #   rom.relation(:reports) # use like a normal rom relation
+    #   rom = ROM.container(conf)
+    #
+    #   rom.relations[:reports] # use like a normal rom relation
     #
     # @api public
     class Relation < ROM::Relation
@@ -46,7 +50,7 @@ module ROM
         define_query_methods(klass, queries[klass.dataset] || {})
       end
 
-      # Extend provided klass with query methods
+      # Extends provided klass with query methods
       #
       # @param [Class] klass A relation class
       # @param [Hash] queries A hash with name, query pairs for the relation
@@ -86,7 +90,7 @@ module ROM
         @queries
       end
 
-      # Return query proc set on a relation class
+      # Returns query proc set on a relation class
       #
       # By default this returns whatever was set in the gateway or the default
       # one which simply uses hash % query to evaluate a query string
