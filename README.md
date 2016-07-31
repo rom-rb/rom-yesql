@@ -16,6 +16,9 @@
 
 [Yesql](https://github.com/krisajenkins/yesql)-like adapter for [Ruby Object Mapper](https://github.com/rom-rb/rom).
 
+* [API docs](http://rubydoc.info/gems/rom-yesql)
+* [ROM user docs](http://rom-rb.org/learn)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -31,23 +34,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install rom-yesql
-
-## Synopsis
-
-``` ruby
-# given sql/my_queries/users.sql includes "SELECT * FROM users WHERE name = '%{name}'"
-
-ROM.use :auto_registration
-ROM.setup(:yesql, ['sqlite://path/to/your/db', path: './sql'])
-
-class MyQueries < ROM::Relation[:yesql]
-end
-
-rom = ROM.finalize.env
-
-my_queries = rom.relations[:my_queries]
-my_queries.users(name: 'Jane').to_a # => gets the users
-```
 
 ## License
 
