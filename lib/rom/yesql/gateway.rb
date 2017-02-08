@@ -1,6 +1,6 @@
 require 'sequel'
 
-require 'rom/support/options'
+require 'rom/initializer'
 
 require 'rom/yesql/dataset'
 require 'rom/yesql/relation'
@@ -14,15 +14,19 @@ module ROM
     #
     # @api public
     class Gateway < ROM::Gateway
-      include Options
+      extend Initializer
+
+      # @!attribute [r] uri
+      #  @return [String] connection string
+      param :uri
 
       # @!attribute [r] path
       #   @return [String] a path to files with SQL queries
-      option :path, reader: true
+      option :path, reader: true, optional: true
 
       # @!attribute [r] queries
       #   @return [Hash] a hash with queries
-      option :queries, type: Hash, default: EMPTY_HASH, reader: true
+      option :queries, default: -> _ { EMPTY_HASH }, reader: true
 
       # @!attribute [r] query_proc
       #   This defaults to simple interpolation of the query using option hash passed to a relation
@@ -63,11 +67,10 @@ module ROM
       #   @option :query_proc [Proc]
       #
       # @api public
-      def initialize(uri, options = {})
+      def initialize(*)
         super
         @connection = Sequel.connect(uri, options)
-        initialize_queries
-        queries.freeze
+        @queries = @queries.merge(load_queries(path)).freeze
         Relation.query_proc(query_proc)
         Relation.load_queries(queries)
       end
@@ -99,18 +102,19 @@ module ROM
       # Loads queries from filesystem if :path was provided
       #
       # @api private
-      def initialize_queries
-        @queries = options[:queries].dup
+      def load_queries(path)
+        if path.nil?
+          {}
+        else
+          Dir["#{path}/*"].each_with_object({}) do |dir, fs_queries|
+            dataset = File.basename(dir).to_sym
 
-        return unless path
+            fs_queries[dataset] = Dir["#{dir}/**/*.sql"].each_with_object({}) do |file, ds_queries|
+              query_name = File.basename(file, '.*').to_sym
+              sql = File.read(file).strip
 
-        Dir["#{path}/*"].each do |dir|
-          dataset = File.basename(dir).to_sym
-          @queries[dataset] = {}
-          Dir["#{dir}/**/*.sql"].each do |file|
-            name = File.basename(file, '.*').to_sym
-            sql = File.read(file)
-            @queries[dataset][name] = sql.strip
+              ds_queries[query_name] = sql
+            end
           end
         end
       end

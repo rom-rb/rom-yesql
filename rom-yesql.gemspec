@@ -1,4 +1,3 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'rom/yesql/version'
@@ -18,8 +17,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "rom", "~> 2.0"
-  spec.add_runtime_dependency 'sequel', '~> 4.27'
+  spec.add_runtime_dependency "rom", "~> 3.0"
+  spec.add_runtime_dependency "dry-core", "~> 0.2", ">= 0.2.4"
+  spec.add_runtime_dependency "sequel", "~> 4.27"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 10.0"
 end

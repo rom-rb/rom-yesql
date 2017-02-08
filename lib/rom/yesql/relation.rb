@@ -1,3 +1,5 @@
+require 'dry/core/class_attributes'
+
 require 'rom/relation'
 require 'rom/yesql/relation/class_interface'
 
@@ -31,7 +33,7 @@ module ROM
     class Relation < ROM::Relation
       adapter :yesql
 
-      extend ClassMacros
+      extend Dry::Core::ClassAttributes
 
       defines :query_proc
 
