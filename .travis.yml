@@ -1,24 +1,26 @@
 language: ruby
+dist: trusty
 sudo: false
 cache: bundler
 bundler_args: --without tools
 script: "bundle exec rake ci"
-rvm:
-  - 2.2.6
-  - 2.3.3
-  - 2.4.0
-  - rbx-2
-  - jruby-9.0.5.0
-  - jruby-head
-  - ruby-head
 env:
   global:
     - CODECLIMATE_REPO_TOKEN=15dad2a6b4f5f73f367783df8192230b73070b33fe1f193393e9867d50653885
     - JRUBY_OPTS='--dev -J-Xmx1024M'
+after_success:
+  # Send coverage report from the job #1 == current MRI release
+  - '[ "${TRAVIS_JOB_NUMBER#*.}" = "1" ] && [ "$TRAVIS_BRANCH" = "master" ] && bundle exec codeclimate-test-reporter'
+rvm:
+  - 2.4.0
+  - 2.3.3
+  - 2.2.6
+  - jruby-9.1.7.0
+  - ruby-head
+  - rbx-3
 matrix:
   allow_failures:
     - rvm: ruby-head
-    - rvm: jruby-head
 notifications:
   webhooks:
     urls:
