@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'ROM / Yesql' do
+RSpec.describe 'ROM / Yesql' do
   include_context 'users and tasks'
 
   let(:container) { ROM.container(configuration) }

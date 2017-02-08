@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ROM::Yesql::Gateway do
+RSpec.describe ROM::Yesql::Gateway do
   include_context 'gateway setup'
 
   it 'loads queries from file system when :path is provided' do

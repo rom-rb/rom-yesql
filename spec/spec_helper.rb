@@ -32,4 +32,6 @@ RSpec.configure do |config|
   config.after do
     Object.send(:remove_const, :Test)
   end
+
+  config.disable_monkey_patching!
 end

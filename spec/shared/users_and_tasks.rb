@@ -1,4 +1,4 @@
-shared_context 'users and tasks' do
+RSpec.shared_context 'users and tasks' do
   include_context 'database setup'
 
   before do

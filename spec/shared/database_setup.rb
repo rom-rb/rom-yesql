@@ -1,4 +1,4 @@
-shared_context 'database setup' do
+RSpec.shared_context 'database setup' do
   include_context 'gateway setup'
 
   let!(:conn) { Sequel.connect(uri) }
