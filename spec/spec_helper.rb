@@ -9,8 +9,6 @@ if RUBY_ENGINE == 'ruby' && ENV['CI'] == 'true'
 end
 
 require 'rom-yesql'
-# FIXME: why do we need to require it manually??
-require 'sequel/adapters/sqlite' unless RUBY_ENGINE == 'jruby'
 require 'inflecto'
 require 'logger'
 
@@ -27,11 +25,11 @@ Dir[root.join('shared/*.rb').to_s].each { |f| require f }
 
 RSpec.configure do |config|
   config.before do
-    @constants = Object.constants
+    module Test
+    end
   end
 
   config.after do
-    added_constants = Object.constants - @constants
-    added_constants.each { |name| Object.send(:remove_const, name) }
+    Object.send(:remove_const, :Test)
   end
 end
