@@ -1,3 +1,7 @@
+## v0.4.0 to-be-released
+
+Updated to work with rom 3.0.0
+
 ## v0.3.0 2016-07-31
 
 Updated to work with rom 2.0.0
@@ -12,7 +16,7 @@ Updated to work with rom 0.9.0
 
 ### Changed
 
-* Updated to work with rom 0.8 (solnic)
+Updated to work with rom 0.8 (solnic)
 
 [Compare v0.1.0...v0.1.1](https://github.com/rom-rb/rom-yaml/compare/v0.1.0...v0.1.1)
 
