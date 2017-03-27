@@ -16,6 +16,8 @@ module ROM
     class Gateway < ROM::Gateway
       extend Initializer
 
+      adapter :yesql
+
       # @!attribute [r] uri
       #  @return [String] connection string
       param :uri
@@ -26,7 +28,7 @@ module ROM
 
       # @!attribute [r] queries
       #   @return [Hash] a hash with queries
-      option :queries, default: -> _ { EMPTY_HASH }, reader: true
+      option :queries, default: -> { EMPTY_HASH }
 
       # @!attribute [r] query_proc
       #   This defaults to simple interpolation of the query using option hash passed to a relation
