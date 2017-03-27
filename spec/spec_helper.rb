@@ -27,8 +27,6 @@ LOGGER = Logger.new(File.open('./log/test.log', 'a'))
 
 root = Pathname(__FILE__).dirname
 
-Dir[root.join('shared/*.rb').to_s].each { |f| require f }
-
 RSpec.configure do |config|
   config.before do
     module Test
@@ -40,4 +38,7 @@ RSpec.configure do |config|
   end
 
   config.disable_monkey_patching!
+  config.warnings = true
 end
+
+Dir[root.join('shared/*.rb').to_s].each { |f| require f }
