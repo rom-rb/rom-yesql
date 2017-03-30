@@ -1,6 +1,12 @@
+## v0.5.1 2017-03-30
+
+Updated rom dependency (flash-gordon)
+
+[Compare v0.5.0...v0.5.1](https://github.com/rom-rb/rom-yesql/compare/v0.5.0...v0.5.1)
+
 ## v0.5.0 2017-03-28
 
-Updated to work with rom 3.2.0
+Updated to work with rom 3.2.0 (flash-gordon)
 
 [Compare v0.4.0...v0.5.0](https://github.com/rom-rb/rom-yesql/compare/v0.4.0...v0.5.0)
 
