@@ -49,7 +49,6 @@ module ROM
       def self.inherited(klass)
         super
         klass.extend(ClassInterface)
-        define_query_methods(klass, queries[klass.dataset] || {})
       end
 
       # Extends provided klass with query methods
