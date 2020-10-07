@@ -23,7 +23,7 @@ RSpec.describe 'ROM / Yesql' do
 
     module Test
       class Reports < ROM::Relation[:yesql]
-        dataset :reports
+        schema :reports, infer: true
       end
     end
 
