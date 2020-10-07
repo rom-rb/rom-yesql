@@ -14,10 +14,9 @@ module ROM
         #
         # @api public
         def dataset(name = Undefined)
-          return @dataset if name == Undefined
-          @dataset = name
+          name = relation_name.to_sym if name == Undefined
           define_query_methods(self, Relation.queries[name] || {})
-          @dataset
+          ->(*) { self }
         end
       end
     end
