@@ -11,9 +11,9 @@ RSpec.describe 'ROM / Yesql' do
 
   let(:report_queries) { { all_users: 'SELECT * FROM users ORDER BY %{order}' } }
 
-  let(:users) { container.relation(:users) }
-  let(:tasks) { container.relation(:tasks) }
-  let(:reports) { container.relation(:reports) }
+  let(:users) { container.relations[:users] }
+  let(:tasks) { container.relations[:tasks] }
+  let(:reports) { container.relations[:reports] }
 
   before do
     configuration.relation(:users)
@@ -23,7 +23,7 @@ RSpec.describe 'ROM / Yesql' do
 
     module Test
       class Reports < ROM::Relation[:yesql]
-        dataset :reports
+        schema :reports, infer: true
       end
     end
 
