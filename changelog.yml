@@ -1,4 +1,7 @@
 ---
+- version: 1.0.0
+  date: '2020-12-06'
+  summary: Updated to work with rom 6.0.0 (@mrship)
 - version: 0.5.1
   date: '2017-03-30'
   summary: Updated rom dependency (flash-gordon)
