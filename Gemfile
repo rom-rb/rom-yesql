@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
+eval_gemfile "Gemfile.devtools"
+
 group :test do
   gem 'inflecto'
   gem 'rspec', '~> 3.5'
