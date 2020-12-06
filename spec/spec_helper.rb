@@ -1,18 +1,11 @@
 require 'bundler'
 Bundler.setup
 
-if RUBY_ENGINE == 'ruby' && ENV['COVERAGE'] == 'true'
-  require 'yaml'
-  rubies = YAML.load(File.read(File.join(__dir__, '..', '.travis.yml')))['rvm']
-  latest_mri = rubies.select { |v| v =~ /\A\d+\.\d+.\d+\z/ }.max
+require_relative "support/coverage" if ENV["COVERAGE"] == "true"
 
-  if RUBY_VERSION == latest_mri
-    require 'simplecov'
-    SimpleCov.start do
-      add_filter '/spec/'
-    end
-  end
-end
+require_relative "warnings"
+
+Warning.process { |w| raise w } if ENV["FAIL_ON_WARNINGS"].eql?("true")
 
 require 'rom-yesql'
 require 'inflecto'
