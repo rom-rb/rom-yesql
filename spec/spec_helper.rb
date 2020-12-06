@@ -3,7 +3,7 @@ Bundler.setup
 
 require_relative "support/coverage" if ENV["COVERAGE"] == "true"
 
-require_relative "warnings"
+require_relative "support/warnings"
 
 Warning.process { |w| raise w } if ENV["FAIL_ON_WARNINGS"].eql?("true")
 
