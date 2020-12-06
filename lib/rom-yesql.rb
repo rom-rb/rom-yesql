@@ -1,3 +1,5 @@
-require 'rom' # FIXME: this should not be needed
+# frozen_string_literal: true
 
-require 'rom/yesql'
+require "rom" # FIXME: this should not be needed
+
+require "rom/yesql"

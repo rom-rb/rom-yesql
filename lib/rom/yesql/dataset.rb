@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ROM
   module Yesql
     # Yesql dataset simply uses a sequel connection to fetch results of a query

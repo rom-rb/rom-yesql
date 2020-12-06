@@ -1,10 +1,12 @@
-RSpec.shared_context 'database setup' do
-  include_context 'gateway setup'
+# frozen_string_literal: true
+
+RSpec.shared_context "database setup" do
+  include_context "gateway setup"
 
   let!(:conn) { Sequel.connect(uri) }
 
   def drop_tables
-    [:users, :tasks].each { |name| conn.drop_table?(name) }
+    %i[users tasks].each { |name| conn.drop_table?(name) }
   end
 
   before do

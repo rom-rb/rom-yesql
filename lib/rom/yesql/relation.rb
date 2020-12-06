@@ -1,7 +1,9 @@
-require 'dry/core/class_attributes'
+# frozen_string_literal: true
 
-require 'rom/relation'
-require 'rom/yesql/relation/class_interface'
+require "dry/core/class_attributes"
+
+require "rom/relation"
+require "rom/yesql/relation/class_interface"
 
 module ROM
   module Yesql

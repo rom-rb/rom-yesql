@@ -1,9 +1,11 @@
-require 'sequel'
+# frozen_string_literal: true
 
-require 'rom/initializer'
+require "sequel"
 
-require 'rom/yesql/dataset'
-require 'rom/yesql/relation'
+require "rom/initializer"
+
+require "rom/yesql/dataset"
+require "rom/yesql/relation"
 
 module ROM
   module Yesql
@@ -96,7 +98,7 @@ module ROM
       #
       # @api private
       def dataset?(_name)
-        ! @dataset.nil?
+        !@dataset.nil?
       end
 
       private
@@ -112,7 +114,7 @@ module ROM
             dataset = File.basename(dir).to_sym
 
             fs_queries[dataset] = Dir["#{dir}/**/*.sql"].each_with_object({}) do |file, ds_queries|
-              query_name = File.basename(file, '.*').to_sym
+              query_name = File.basename(file, ".*").to_sym
               sql = File.read(file).strip
 
               ds_queries[query_name] = sql

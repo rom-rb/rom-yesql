@@ -1,17 +1,19 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 
 gemspec
 
 eval_gemfile "Gemfile.devtools"
 
 group :test do
-  gem 'inflecto'
-  gem 'rspec', '~> 3.5'
-  gem 'codeclimate-test-reporter', require: false
-  gem 'sqlite3', platforms: [:mri, :rbx]
-  gem 'jdbc-sqlite3', platforms: :jruby
+  gem "codeclimate-test-reporter", require: false
+  gem "inflecto"
+  gem "jdbc-sqlite3", platforms: :jruby
+  gem "rspec", "~> 3.5"
+  gem "sqlite3", platforms: %i[mri rbx]
 end
 
 group :tools do
-  gem 'byebug', platforms: [:mri]
+  gem "byebug", platforms: [:mri]
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 begin
   require "rubocop/rake_task"
 
@@ -8,11 +10,10 @@ begin
   end
 
   namespace :rubocop do
-    desc 'Generate a configuration file acting as a TODO list.'
+    desc "Generate a configuration file acting as a TODO list."
     task :auto_gen_config do
       exec "bundle exec rubocop --auto-gen-config"
     end
   end
-
-rescue LoadError # rubocop:disable Lint/HandleExceptions
+rescue LoadError
 end
