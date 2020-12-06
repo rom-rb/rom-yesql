@@ -1,39 +1,28 @@
 [gem]: https://rubygems.org/gems/rom-yesql
-[travis]: https://travis-ci.org/rom-rb/rom-yesql
-[gemnasium]: https://gemnasium.com/rom-rb/rom-yesql
-[codeclimate]: https://codeclimate.com/github/rom-rb/rom-yesql
+[actions]: https://github.com/rom-rb/rom-yesql/actions
+[codacy]: https://www.codacy.com/gh/rom-rb/rom-yesql
+[chat]: https://rom-rb.zulipchat.com
 [inchpages]: http://inch-ci.org/github/rom-rb/rom-yesql
 
-# rom-yesql
+# rom-yesql [![Join the chat at https://rom-rb.zulipchat.com](https://img.shields.io/badge/rom--rb-join%20chat-%23346b7a.svg)][chat]
 
 [![Gem Version](https://badge.fury.io/rb/rom-yesql.svg)][gem]
-[![Build Status](https://travis-ci.org/rom-rb/rom-yesql.svg?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/rom-rb/rom-yesql.svg)][gemnasium]
-[![Code Climate](https://codeclimate.com/github/rom-rb/rom-yesql/badges/gpa.svg)][codeclimate]
-[![Test Coverage](https://codeclimate.com/github/rom-rb/rom-yesql/badges/coverage.svg)][codeclimate]
+[![CI Status](https://github.com/rom-rb/rom-yesql/workflows/ci/badge.svg)][actions]
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/88fbb464691e4666b94e0455468b68bf)][codacy]
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/88fbb464691e4666b94e0455468b68bf)][codacy]
 [![Inline docs](http://inch-ci.org/github/rom-rb/rom-yesql.svg?branch=master)][inchpages]
 
+## Links
 
-[Yesql](https://github.com/krisajenkins/yesql)-like adapter for [Ruby Object Mapper](https://github.com/rom-rb/rom).
+* [User documentation](http://rom-rb.org/learn/yesql)
+* [API documentation](http://rubydoc.info/gems/rom-yesql)
 
-* [API docs](http://rubydoc.info/gems/rom-yesql)
-* [ROM user docs](http://rom-rb.org/learn)
+## Supported Ruby versions
 
-## Installation
+This library officially supports the following Ruby versions:
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'rom-yesql'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rom-yesql
+* MRI >= `2.4`
+* jruby >= `9.2`
 
 ## License
 
