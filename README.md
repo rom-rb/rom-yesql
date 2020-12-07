@@ -14,8 +14,8 @@
 
 ## Links
 
-* [User documentation](http://rom-rb.org/learn/yesql)
 * [API documentation](http://rubydoc.info/gems/rom-yesql)
+* User documentation - not written yet, but you [can write it](https://github.com/rom-rb/rom-yesql/issues/16)! 😄
 
 ## Supported Ruby versions
 
