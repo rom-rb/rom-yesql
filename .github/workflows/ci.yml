@@ -6,6 +6,7 @@ name: ci
   push:
     paths:
       - ".github/workflows/ci.yml"
+      - ".github/workflows/custom/ci.yml"
       - "lib/**"
       - "*.gemspec"
       - "spec/**"
