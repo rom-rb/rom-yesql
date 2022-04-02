@@ -8,9 +8,9 @@
 
 [![Gem Version](https://badge.fury.io/rb/rom-yesql.svg)][gem]
 [![CI Status](https://github.com/rom-rb/rom-yesql/workflows/ci/badge.svg)][actions]
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/88fbb464691e4666b94e0455468b68bf)][codacy]
+[![RuboCop](https://github.com/rom-rb/rom-yesql/actions/workflows/rubocop.yml/badge.svg)](https://github.com/rom-rb/rom-yesql/actions/workflows/rubocop.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/88fbb464691e4666b94e0455468b68bf)][codacy]
-[![Inline docs](http://inch-ci.org/github/rom-rb/rom-yesql.svg?branch=master)][inchpages]
+[![Inline docs](http://inch-ci.org/github/rom-rb/rom-yesql.svg?branch=main)][inchpages]
 
 ## Links
 
