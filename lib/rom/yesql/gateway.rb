@@ -71,7 +71,7 @@ module ROM
       #   @option :query_proc [Proc]
       #
       # @api public
-      def initialize(*)
+      def initialize(*, **)
         super
         @connection = Sequel.connect(uri, options)
         @queries = @queries.merge(load_queries(path)).freeze
