@@ -1,4 +1,9 @@
 ---
+- version: 1.1.0
+  date: '2025-01-19'
+  summary: Updated to work with rom 5.4.0
+  changed:
+  - Minimal Ruby version is now 3.1.0 (@flash-gordon)
 - version: 1.0.0
   date: '2020-12-06'
   summary: Updated to work with rom 6.0.0 (@mrship)
