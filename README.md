@@ -1,6 +1,5 @@
 [gem]: https://rubygems.org/gems/rom-yesql
 [actions]: https://github.com/rom-rb/rom-yesql/actions
-[codacy]: https://www.codacy.com/gh/rom-rb/rom-yesql
 [chat]: https://rom-rb.zulipchat.com
 [inchpages]: http://inch-ci.org/github/rom-rb/rom-yesql
 
@@ -9,7 +8,6 @@
 [![Gem Version](https://badge.fury.io/rb/rom-yesql.svg)][gem]
 [![CI Status](https://github.com/rom-rb/rom-yesql/workflows/ci/badge.svg)][actions]
 [![RuboCop](https://github.com/rom-rb/rom-yesql/actions/workflows/rubocop.yml/badge.svg)](https://github.com/rom-rb/rom-yesql/actions/workflows/rubocop.yml)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/88fbb464691e4666b94e0455468b68bf)][codacy]
 [![Inline docs](http://inch-ci.org/github/rom-rb/rom-yesql.svg?branch=main)][inchpages]
 
 ## Links
@@ -21,8 +19,8 @@
 
 This library officially supports the following Ruby versions:
 
-* MRI >= `2.5`
-* jruby >= `9.2`
+* MRI >= `3.1`
+* JRuby >= `9.4` (not tested)
 
 ## License
 
