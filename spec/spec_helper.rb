@@ -10,7 +10,6 @@ require_relative "support/warnings"
 Warning.process { |w| raise w } if ENV["FAIL_ON_WARNINGS"].eql?("true")
 
 require "rom-yesql"
-require "inflecto"
 require "logger"
 
 begin
