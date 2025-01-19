@@ -8,7 +8,7 @@ RSpec.describe "ROM / Yesql" do
   let(:container) { ROM.container(configuration) }
 
   let!(:configuration) do
-    ROM::Configuration.new(:yesql, *[uri, path: path, queries: {reports: report_queries}])
+    ROM::Configuration.new(:yesql, uri, path: path, queries: {reports: report_queries})
   end
 
   let(:report_queries) { {all_users: "SELECT * FROM users ORDER BY %{order}"} }

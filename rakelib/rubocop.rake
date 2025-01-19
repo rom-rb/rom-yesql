@@ -16,4 +16,5 @@ begin
     end
   end
 rescue LoadError
+  # rubocop is not available
 end

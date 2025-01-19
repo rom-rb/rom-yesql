@@ -36,4 +36,4 @@ RSpec.configure do |config|
   config.warnings = true
 end
 
-Dir[root.join("shared/*.rb").to_s].sort.each { |f| require f }
+Dir[root.join("shared/*.rb").to_s].each { |f| require f }
