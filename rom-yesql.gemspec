@@ -16,10 +16,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = ">= 3.1.0"
 
-  spec.add_runtime_dependency "rom", "~>5"
-  spec.add_runtime_dependency "dry-core", "~>1.0"
-  spec.add_runtime_dependency "sequel", "~>5"
+  spec.add_runtime_dependency "rom", "~> 5.4"
+  spec.add_runtime_dependency "dry-core", "~>1.1"
+  spec.add_runtime_dependency "sequel", "~> 5"
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake", "~> 10.0"
 end
