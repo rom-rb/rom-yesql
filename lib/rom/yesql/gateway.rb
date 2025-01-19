@@ -15,7 +15,7 @@ module ROM
     # expose access to gateway's queries.
     #
     # @api public
-    class Gateway < ROM::Gateway
+    class Gateway < ::ROM::Gateway
       extend Initializer
 
       adapter :yesql
@@ -73,7 +73,7 @@ module ROM
       # @api public
       def initialize(*, **)
         super
-        @connection = Sequel.connect(uri, options)
+        @connection = ::Sequel.connect(uri, options)
         @queries = @queries.merge(load_queries(path)).freeze
         Relation.query_proc(query_proc)
         Relation.load_queries(queries)
@@ -110,20 +110,21 @@ module ROM
         if path.nil?
           {}
         else
-          Dir["#{path}/*"].each_with_object({}) do |dir, fs_queries|
-            dataset = File.basename(dir).to_sym
+          ::Dir["#{path}/*"].to_h do |dir|
+            [
+              ::File.basename(dir).to_sym,
+              ::Dir["#{dir}/**/*.sql"].to_h do |file|
+                query_name = ::File.basename(file, ".*").to_sym
+                sql = ::File.read(file).strip
 
-            fs_queries[dataset] = Dir["#{dir}/**/*.sql"].each_with_object({}) do |file, ds_queries|
-              query_name = File.basename(file, ".*").to_sym
-              sql = File.read(file).strip
-
-              ds_queries[query_name] = sql
-            end
+                [query_name, sql]
+              end
+            ]
           end
         end
       end
     end
   end
 
-  register_adapter(:yesql, ROM::Yesql)
+  register_adapter(:yesql, Yesql)
 end

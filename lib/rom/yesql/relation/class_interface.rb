@@ -2,7 +2,7 @@
 
 module ROM
   module Yesql
-    class Relation < ROM::Relation
+    class Relation < ::ROM::Relation
       module ClassInterface
         # Sets dataset name for the relation class
         #

@@ -32,14 +32,14 @@ module ROM
     #   rom.relations[:reports] # use like a normal rom relation
     #
     # @api public
-    class Relation < ROM::Relation
+    class Relation < ::ROM::Relation
       adapter :yesql
 
-      extend Dry::Core::ClassAttributes
+      extend ::Dry::Core::ClassAttributes
 
       defines :query_proc
 
-      Materialized = Class.new(ROM::Relation)
+      Materialized = ::Class.new(::ROM::Relation)
 
       # Extends a relation with query methods
       #
@@ -84,13 +84,9 @@ module ROM
       #
       # @api private
       def self.load_queries(queries)
-        @queries = {}
-        queries.each do |ds, ds_queries|
-          @queries[ds] = ds_queries.each_with_object({}) do |(name, query), h|
-            h[name] = query
-          end
+        @queries = queries.to_h do |ds, ds_queries|
+          [ds, ds_queries.to_h { |name, query| [name, query] }]
         end
-        @queries
       end
 
       # Returns query proc set on a relation class
